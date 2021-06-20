@@ -8,11 +8,11 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
-  type: NodePort
+  type: {{ .Values.service.nodeport.type }}
   ports:
   - name: http
-    nodePort: 31080
-    port: 80
+    nodePort: {{ .Values.service.nodeport.port }}
+    port: {{ .Values.service.cluster.port }}
     protocol: TCP
     targetPort: http
   selector:
