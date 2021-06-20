@@ -1,0 +1,23 @@
+---
+rancher_min_version: 2.3.0
+questions:
+- variable: defaultImage
+  default: true
+  description: "Use default default image"
+  type: boolean
+  required: true
+  label: Use default default image
+  show_subquestion_if: false
+  group: "default image"
+  subquestions:
+  - variable: image.repository
+    default: "rancher/local-path-provisioner"
+    description: "local-path-provisioner image"
+    type: string
+    label: local-path-provisioner image
+    required: true
+  - variable: image.tag
+    default: "v0.0.12"
+    description: "local-path-provisioner image tag"
+    type: string
+    label: local-path-provisioner image Tag

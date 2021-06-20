@@ -1,0 +1,96 @@
+# Default values for presto.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+presto:
+  workers: 3
+  node:
+    environment: production
+    dataDir: /data/presto
+  log:
+    presto:
+      level: INFO
+  config:
+    path: /etc/presto
+    http:
+      port: 8080
+    query:
+      maxMemory: "8GB"
+      maxMemoryPerNode: "4GB"
+      maxTotalMemoryPerNode: "8GB"
+  jvm:
+    maxHeapSize: "32G"
+    gcMethod:
+      type: "UseG1GC"
+      g1:
+        heapRegionSize: "32M"
+  catalogs:
+    memory.properties: Y29ubmVjdG9yLm5hbWU9bWVtb3J5Cm1lbW9yeS5tYXgtZGF0YS1wZXItbm9kZT00R0I=
+    hive.properties: Y29ubmVjdG9yLm5hbWU9aGl2ZS1oYWRvb3AyCmhpdmUubWV0YXN0b3JlLnVyaT10aHJpZnQ6Ly8xNzIuMjAuOC4xNTQ6OTA4Mw==
+
+replicaCount: 1
+
+image:
+  repository: prestosql/presto
+  tag: 341
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: presto.stone.me
+      paths: ["/"]
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
