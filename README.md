@@ -1,7 +1,34 @@
-# Charts Demo
+# Helm Usages
 
-## Helm Usages
+## How to add repos
 ```bash
+$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+$ helm repo add bitnami https://charts.bitnami.com/bitnami 
+```
+
+## How to package chart
+```bash
+$ helm dependency update ./prometheus-operator
+$ helm package ./prometheus-operator
+```
+
+## How to fetch chart
+```bash
+$ helm fetch stable/grafana
+$ helm fetch stable/grafana --untar
+```
+
+## How to auto-completion
+```bash
+helm completion bash > ./helm-completion.sh
+# for linux
+mv ./helm-completion.sh /etc/profile.d/helm-completion.sh
+# for mac
+mv ./helm-completion.sh /usr/local/etc/profile.d/helm-completion.sh
+```
+## How to render locally?
+```bash
+helm template <name> <chart>
 ```
 
 ## How to manage chart by Harbor
