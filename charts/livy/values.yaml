@@ -115,9 +115,10 @@ persistence:
   size: 20Gi
   annotations: {}
 
+# kubectl cluster-info
 env:
-  SPARK_MASTER: {value: "local[*]"}
-  DEPLOY_MODE: {value: "client"}
+  SPARK_MASTER: {value: "k8s://https://kubernetes.docker.internal:6443"}
+  DEPLOY_MODE: {value: "cluster"}
   # LIVY_LIVY_UI_BASE1PATH: {value: ""} # eg.: `/livy`
   # LIVY_LIVY_SERVER_SESSION_STATE0RETAIN_SEC: {value: "12h"}
   # LIVY_LIVY_SERVER_SESSION_MAX0CREATION: {value: "10"}
