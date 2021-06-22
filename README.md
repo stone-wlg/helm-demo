@@ -6,6 +6,17 @@ $ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 $ helm repo add bitnami https://charts.bitnami.com/bitnami 
 ```
 
+## How to install and uninstall
+```bash
+helm install [NAME] [CHART] [flags]
+helm install livy ./charts/livy --dry-run
+helm uninstall livy
+helm list
+
+$ kubectl get pod
+$ kubectl port-forward spark-pi-01-1624349534244-driver 4040:4040
+```
+
 ## How to package chart
 ```bash
 $ helm dependency update ./prometheus-operator

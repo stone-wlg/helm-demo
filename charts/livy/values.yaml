@@ -5,7 +5,7 @@
 global: {}
 
 image:
-  repository: stonewlg/livy
+  repository: stonewlg/livy-server
   tag: 0.7.1-spark2.4.8
   pullPolicy: IfNotPresent
 
